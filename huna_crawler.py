@@ -31,6 +31,7 @@ def telegram_bot(url, regexs):
     bot = TelegramBot(BOT_API_TOKEN)
     bot.update_bot_info().wait()
     print(bot.username)
+    bot.send_message(CHAT_ID, "[%s] Bot Starting" % str(datetime.now())).wait()
     while (True):
         diff = diff_html(url, regexs)
         if diff:
