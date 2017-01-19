@@ -27,6 +27,20 @@ DATA={
 }
 
 
+def get_repeated_lines_content(
+    url='http://hunahpusday.com/breweries/?orderby=post_title&order=ASC&breweryNumber=-1',
+    line_regex='<h3 class="h2">(.*)</a></h3>',
+    content_regex='title="(.*)"',
+    ):
+
+    response = requests.get(url)
+    lines = re.findall(line_regex, response.content)
+    content = []
+    for l in lines:
+        content = content + re.findall(content_regex, bl)
+    return content
+
+
 def telegram_bot(url, regexs):
     bot = TelegramBot(BOT_API_TOKEN)
     bot.update_bot_info().wait()
